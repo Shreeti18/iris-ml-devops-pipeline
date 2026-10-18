@@ -1,0 +1,23 @@
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# MLflow
+mlruns/
+mlartifacts/
+mlflow.db
+mlflow.db-*
+mlflow.db-journal
+
+# Environment variables
+.env
+.env.*
+
+# Editor and OS
+.vscode/
+.DS_Store
+Thumbs.db
