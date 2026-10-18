@@ -1,0 +1,42 @@
+
+name: Iris ML DevOps CI/CD Pipeline
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pytest
+
+      - name: Check Python Syntax
+        run: |
+          python -m compileall -q .
+
+      - name: Run Automated Tests
+        run: |
+          python -m pytest -v
+
+      - name: Verify Docker Installation
+        run: docker --version
+
+      - name: Build Docker Image
+        if: hashFiles('Dockerfile') != ''
+        run: docker build -t iris-ml-devops:latest .
