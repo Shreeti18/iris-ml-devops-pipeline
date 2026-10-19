@@ -1,0 +1,24 @@
+artifact_path: file:C:/Users/Acer/OneDrive/Desktop/agile-mlflow-assignment/mlruns/1/models/m-f062eaaf928b4ea590e18c2b62112350/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.skops
+    predict_fn: predict
+    python_version: 3.14.0
+  sklearn:
+    code: null
+    pickled_model: model.skops
+    serialization_format: skops
+    sklearn_version: 1.9.1
+    skops_trusted_types:
+    - sklearn.tree._tree.Tree
+mlflow_version: 3.17.1
+model_id: m-f062eaaf928b4ea590e18c2b62112350
+model_size_bytes: 1826406
+model_uuid: m-f062eaaf928b4ea590e18c2b62112350
+prompts: null
+run_id: 2e2a1c1f220241e083109e7d3525e47b
+utc_time_created: '2026-10-18 19:34:41.043708'

@@ -3,8 +3,6 @@ global:
   scrape_interval: 5s
 
 scrape_configs:
-  - job_name: "iris-ml-api"
-    metrics_path: /metrics
+  - job_name: iris-ml-api
     static_configs:
-      - targets:
-          - "host.docker.internal:5003"
+      - targets: ["iris-api:5003"]

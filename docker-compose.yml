@@ -1,5 +1,14 @@
 
 services:
+  iris-api:
+    build: .
+    container_name: iris-ml-api
+    ports:
+      - "5003:5003"
+    environment:
+      MODEL_URI: /app/deployment_model
+    restart: unless-stopped
+
   prometheus:
     image: prom/prometheus:latest
     container_name: iris-prometheus
@@ -7,8 +16,8 @@ services:
       - "9090:9090"
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
-    command:
-      - "--config.file=/etc/prometheus/prometheus.yml"
+    depends_on:
+      - iris-api
     restart: unless-stopped
 
   grafana:
@@ -16,9 +25,6 @@ services:
     container_name: iris-grafana
     ports:
       - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_USER=admin
-      - GF_SECURITY_ADMIN_PASSWORD=admin
     volumes:
       - grafana-storage:/var/lib/grafana
     depends_on:
